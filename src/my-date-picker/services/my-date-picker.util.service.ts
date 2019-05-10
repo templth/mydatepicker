@@ -225,6 +225,27 @@ export class UtilService {
         return false;
     }
 
+    isClosedDay(date: IMyDate, closedDays: IMyDate[]) {
+        if (!closedDays) {
+            return false;
+        }
+        const isClosedDay = closedDays.find(d => (d.day === date.day && d.month === date.month && d.year === date.year));
+        return !!isClosedDay;
+    }
+
+    isWithEventsDay(date: IMyDate, eventsDays: IMyDate[]) {
+        if (!eventsDays) {
+            return false;
+        }
+        const isWithEventsDay = eventsDays.find(d => (d.day === date.day && d.month === date.month && d.year === date.year));
+        return !!isWithEventsDay;
+    }
+
+    isNow(date: IMyDate) {
+        const now = new Date();
+        return (now.getDate() === date.day && now.getMonth() + 1 === date.month && now.getFullYear() === date.year);
+    }
+
     getWeekNumber(date: IMyDate): number {
         let d: Date = new Date(date.year, date.month - 1, date.day, 0, 0, 0, 0);
         d.setDate(d.getDate() + (d.getDay() === 0 ? -3 : 4 - d.getDay()));

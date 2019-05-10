@@ -5,9 +5,9 @@ import { LocaleService } from "./services/my-date-picker.locale.service";
 import { UtilService } from "./services/my-date-picker.util.service";
 
 // webpack1_
-declare var require: any;
+/* declare var require: any;
 const myDpStyles: string = require("./my-date-picker.component.css");
-const myDpTpl: string = require("./my-date-picker.component.html");
+const myDpTpl: string = require("./my-date-picker.component.html"); */
 // webpack2_
 
 export const MYDP_VALUE_ACCESSOR: any = {
@@ -27,8 +27,8 @@ const MMM = "mmm";
 @Component({
     selector: "my-date-picker",
     exportAs: "mydatepicker",
-    styles: [myDpStyles],
-    template: myDpTpl,
+    styleUrls: ["./my-date-picker.component.scss"],
+    templateUrl: "./my-date-picker.component.html",
     providers: [LocaleService, UtilService, MYDP_VALUE_ACCESSOR],
     encapsulation: ViewEncapsulation.None
 })
@@ -744,7 +744,11 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
                     week.push({dateObj: date, cmo: cmo, currDay: this.isCurrDay(j, m, y, cmo, today),
                         disabled: this.utilService.isDisabledDay(date, this.opts.minYear, this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableWeekends, this.opts.disableWeekdays, this.opts.disableDays, this.opts.disableDateRanges, this.opts.enableDays),
                         markedDate: this.utilService.isMarkedDate(date, this.opts.markDates, this.opts.markWeekends),
-                        highlight: this.utilService.isHighlightedDate(date, this.opts.sunHighlight, this.opts.satHighlight, this.opts.highlightDates)});
+                        highlight: this.utilService.isHighlightedDate(date, this.opts.sunHighlight, this.opts.satHighlight, this.opts.highlightDates),
+                        closed: this.utilService.isClosedDay(date, this.opts.closedDays),
+                        now: this.utilService.isNow(date),
+                        events: this.utilService.isWithEventsDay(date, this.opts.eventsDays)
+                    });
                 }
 
                 cmo = this.currMonthId;
@@ -755,7 +759,11 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
                     week.push({dateObj: date, cmo: cmo, currDay: this.isCurrDay(dayNbr, m, y, cmo, today),
                         disabled: this.utilService.isDisabledDay(date, this.opts.minYear, this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableWeekends, this.opts.disableWeekdays, this.opts.disableDays, this.opts.disableDateRanges, this.opts.enableDays),
                         markedDate: this.utilService.isMarkedDate(date, this.opts.markDates, this.opts.markWeekends),
-                        highlight: this.utilService.isHighlightedDate(date, this.opts.sunHighlight, this.opts.satHighlight, this.opts.highlightDates)});
+                        highlight: this.utilService.isHighlightedDate(date, this.opts.sunHighlight, this.opts.satHighlight, this.opts.highlightDates),
+                        closed: this.utilService.isClosedDay(date, this.opts.closedDays),
+                        now: this.utilService.isNow(date),
+                        events: this.utilService.isWithEventsDay(date, this.opts.eventsDays)
+                    });
                     dayNbr++;
                 }
             }
@@ -771,7 +779,11 @@ export class MyDatePicker implements OnChanges, ControlValueAccessor, OnDestroy 
                     week.push({dateObj: date, cmo: cmo, currDay: this.isCurrDay(dayNbr, m, y, cmo, today),
                         disabled: this.utilService.isDisabledDay(date, this.opts.minYear, this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableWeekends, this.opts.disableWeekdays, this.opts.disableDays, this.opts.disableDateRanges, this.opts.enableDays),
                         markedDate: this.utilService.isMarkedDate(date, this.opts.markDates, this.opts.markWeekends),
-                        highlight: this.utilService.isHighlightedDate(date, this.opts.sunHighlight, this.opts.satHighlight, this.opts.highlightDates)});
+                        highlight: this.utilService.isHighlightedDate(date, this.opts.sunHighlight, this.opts.satHighlight, this.opts.highlightDates),
+                        closed: this.utilService.isClosedDay(date, this.opts.closedDays),
+                        now: this.utilService.isNow(date),
+                        events: this.utilService.isWithEventsDay(date, this.opts.eventsDays)
+                    });
                     dayNbr++;
                 }
             }

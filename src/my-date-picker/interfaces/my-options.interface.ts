@@ -22,6 +22,8 @@ export interface IMyOptions {
     disableSince?: IMyDate;
     disableDays?: Array<IMyDate>;
     enableDays?: Array<IMyDate>;
+    closedDays?: Array<IMyDate>;
+    eventsDays?: Array<IMyDate>;
     markDates?: Array<IMyMarkedDates>;
     markWeekends?: IMyMarkedDate;
     disableDateRanges?: Array<IMyDateRange>;
